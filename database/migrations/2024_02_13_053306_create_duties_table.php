@@ -12,10 +12,10 @@ return new class extends Migration
             $table -> id();
             $table -> string('name');
             $table -> text('description') -> nullable();
-            $table -> timestamp('st-date');
-            $table -> timestamp('exp-date');
+            $table -> timestamp('st_date');
+            $table -> timestamp('exp_date');
             $table -> timestamp('completed') -> nullable();
-            $table -> unsignedBigInteger('user_id') -> unique();
+            $table -> unsignedBigInteger('user_id');
             $table -> foreign('user_id') -> references('id') -> on('users') -> onDelete('cascade') -> onUpdate('cascade');
             $table -> timestamps();
         });
