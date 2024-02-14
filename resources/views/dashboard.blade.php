@@ -76,9 +76,13 @@
                                 class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-400 focus:border-indigo-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-600 dark:focus:border-indigo-600">
                         </div>
                         <br>
-                        <button type="submit" id="save"
+                        <button type="submit" id="save" name="id" value=""
                             class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">Save</button>
                     </form>
+                    <button id="cancel"
+                        class="mt-4 completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                        Cancel
+                    </button>
                 </div>
             </div>
         </div>
@@ -98,8 +102,8 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <button id='modyfy_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Completed
                                         </button>
                                     </div>
@@ -113,12 +117,12 @@
                                     </div>
                                     <div
                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button id='modyfy_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Modify
                                         </button>
-                                        <button id='delete_btn'
-                                            class="ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Remove
                                         </button>
                                     </div>
@@ -146,8 +150,8 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <button id='completed_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Completed
                                         </button>
                                     </div>
@@ -161,12 +165,12 @@
                                     </div>
                                     <div
                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button id='modify_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Modify
                                         </button>
-                                        <button id='delete_btn'
-                                            class="ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Remove
                                         </button>
                                     </div>
@@ -194,8 +198,8 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <button id='completed_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Completed
                                         </button>
                                     </div>
@@ -209,12 +213,12 @@
                                     </div>
                                     <div
                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button id='modify_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Modify
                                         </button>
-                                        <button id='delete_btn'
-                                            class="ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Remove
                                         </button>
                                     </div>
@@ -242,8 +246,8 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <button id='completed_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Completed
                                         </button>
                                     </div>
@@ -257,12 +261,12 @@
                                     </div>
                                     <div
                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button id='modify_btn'
-                                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Modify
                                         </button>
-                                        <button id='delete_btn'
-                                            class="ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                                             Remove
                                         </button>
                                     </div>
@@ -280,16 +284,41 @@
 
     <script type="module">
         $(document).ready(function() {
+            $('.completed_duty').click(function () {
+                $(this).html($(this).data('id'))
+            });
+            $('.modify_duty').click(function () {
+                var form = $('#duty_form');
+                $(this).html($(this).data('id'));
+                if(form.hasClass("hidden")){
+                    form.removeClass("hidden");
+                }
+                $('#name').val($(this).data('name'));
+                $('#description').val($(this).data('description'));
+                $('#st_date').val($(this).data('st_date').substr(0,10));
+                // console.log($(this).data('st_date').substr(11,17));
+                $('#st_clock').val($(this).data('st_date').substr(11,17));
+                $('#exp_date').val($(this).data('exp_date').substr(0,10));
+                $('#exp_clock').val($(this).data('exp_date').substr(11,17));
+                $('#save').attr('name','id');
+                $('#save').attr('value',$(this).data('id'));
+            });
+            $('.delete_duty').click(function () {
+                $(this).html($(this).data('id'))
+            });
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 }
             });
+            $('#cancel').click(function(){
+                $('#duty_form').addClass("hidden");
+            });
             $('#new_btn').click(function() {
+                $('#save').attr('name','');
+                $('#save').attr('value','');
                 if($('#duty_form').hasClass("hidden")){
                     $('#duty_form').removeClass("hidden");
-                }else{
-                    $('#duty_form').addClass("hidden");
                 }
             });
             $('#pending_btn').click(function() {
@@ -324,7 +353,7 @@
             // console.log(form);
             $('#save').click(function() {
                 var formData = new FormData(form);
-                // console.log(formData);
+                console.log(formData);
                 $.ajax({
                     url: '{{route('db.upload')}}',
                     method: 'POST',

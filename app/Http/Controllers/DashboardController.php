@@ -30,17 +30,23 @@ class DashboardController extends Controller
             'exp_date' => 'required',
             'st_date' => 'required',
         ]);
-
-        if($request -> name && $request -> exp_date && $request -> st_date){
+        if($request -> name && $request -> exp_date && $request -> st_date){     
             $duty = new Duty();
             $duty -> name = $request -> name;
             $duty -> description = $request -> description;
             $duty -> st_date = $request->st_date." ".$request->st_time;
             $duty -> exp_date = $request->exp_date." ".$request->exp_time;  
             $duty -> user_id = auth()->user()->id;
-            $duty -> save();
+            if($request -> id){
+                if($request -> id != ''){
+                    $duty -> id = $request -> id;
+                }
+
+            }  
+            // $duty -> save();
             // return redirect()->route('dashboard');
-            return "valid and updated";
+            // return "valid and updated";
+            return $request;
         }else{
             return "invalid";
         }
