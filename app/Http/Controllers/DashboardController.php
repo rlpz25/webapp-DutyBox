@@ -24,19 +24,38 @@ class DashboardController extends Controller
     }
 
     public function upload(Request $request)
-    {
-        $request -> validate([
-            'name' => 'required',
-            'exp_date' => 'required',
-            'st_date' => 'required',
-        ]);
-        if($request -> name && $request -> exp_date && $request -> st_date){     
-            
-            if($request -> modify){
+    {   
+        $duty = 0;
+        if($request -> remove){
+            $duty = 'es remove';
+            if($request -> remove != '0'){
+                $duty = 'tiene id el remove';
+                $duty = Duty::where('id',$request->remove)->delete();
+            }
+        } elseif ($request -> complete){
+            $duty = 'es request';
+            if($request -> complete != '0'){
+                $duty = 'tiene id el request';
+                date_default_timezone_set('America/Mexico_City');
+                $duty = Duty::where('id',$request->complete)->first();
+                if($duty->completed == NULL){
+                    $duty -> completed = date('Y-m-d H:i:00');
+                }else{
+                    $duty -> completed = NULL;
+                }
+                $duty -> save();
+            }
+        } elseif($request -> name && $request -> exp_date && $request -> st_date){
+            $request -> validate([
+                'name' => 'required',
+                'exp_date' => 'required',
+                'st_date' => 'required',
+            ]);
+            if ($request -> modify){
                 if($request -> modify != '0'){
                     $duty = Duty::where('id',$request->modify)->first();
                 }
-            }else{
+            }elseif ($request -> new){
                 $duty = new Duty();
             }
             $duty -> name = $request -> name;
@@ -45,10 +64,7 @@ class DashboardController extends Controller
             $duty -> exp_date = $request->exp_date." ".$request->exp_time;  
             $duty -> user_id = auth()->user()->id;
             $duty -> save();
-            // return redirect()->route('dashboard');
-            
-            // return $duty;
         }
-        return "completed";
+        return $duty;
     }
 }

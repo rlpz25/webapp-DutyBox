@@ -284,8 +284,10 @@
 
     <script type="module">
         $(document).ready(function() {
-            $('.completed_duty').click(function () {
-                $(this).html('Completed');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
             });
             $('.modify_duty').click(function () {
                 var form = $('#duty_form');
@@ -303,8 +305,74 @@
                 $('#check').attr('name','modify');
                 $('#check').attr('value',$(this).data('id'));
             });
+            $('#save').click(function() {
+                var form = $('#data')[0];
+                var formData = new FormData(form);
+                // console.log(formData);
+                $.ajax({
+                    url: '{{route('db.upload')}}',
+                    method: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function(response) {
+                        console.log('successful create or update');
+                        // console.log(response);
+                    },
+                    error: function(error) {
+                        if(error){
+                            console.log(error.responseJSON.errors)
+                        }
+                    }
+                });
+            });
+            $('.completed_duty').click(function () {
+                $(this).html('Completed');
+                $('#check').attr('name','complete');
+                $('#check').attr('value',$(this).data('id'));
+                var form = $('#data')[0];
+                var formData = new FormData(form);
+                // console.log(formData);
+                $.ajax({
+                    url: '{{route('db.upload')}}',
+                    method: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function(response) {
+                        console.log('successful complete');
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        if(error){
+                            console.log(error.responseJSON.errors)
+                        }
+                    }
+                });
+            });
             $('.delete_duty').click(function () {
                 $(this).html('Removed');
+                $('#check').attr('name','remove');
+                $('#check').attr('value',$(this).data('id'));
+                var form = $('#data')[0];
+                var formData = new FormData(form);
+                // console.log(formData);
+                $.ajax({
+                    url: '{{route('db.upload')}}',
+                    method: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function(response) {
+                        console.log('successful delete');
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        if(error){
+                            console.log(error.responseJSON.errors)
+                        }
+                    }
+                });
             });
             $('#cancel').click(function(){
                 $('#duty_form').addClass("hidden");
@@ -349,33 +417,6 @@
                 }else{
                     $('#expired_duties').addClass("hidden");
                 }
-            });
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
-            var form = $('#data')[0];
-            // console.log(form);
-            $('#save').click(function() {
-                var formData = new FormData(form);
-                // console.log(formData);
-                $.ajax({
-                    url: '{{route('db.upload')}}',
-                    method: 'POST',
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    success: function(response) {
-                        console.log('success');
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        if(error){
-                            console.log(error.responseJSON.errors)
-                        }
-                    }
-                });
             });
         });
     </script>
