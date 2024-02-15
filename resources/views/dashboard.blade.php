@@ -32,13 +32,12 @@
 
     </x-slot>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 py-9">
+    <div class="grid grid-cols-1 lg:grid-cols-2 py-9 gap-y-4">
 
-        <div id="duty_form" class="hidden w-full mx-auto sm:rounded-lg sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100">
-            <div class="mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div id="duty_form" class="hidden w-full h-full mx-auto sm:rounded-lg sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100">
+            <div class="w-full h-full mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form name="data" id="data" {{-- action="{{ route('db.upload') }}" method="POST" --}}>
-                        {{-- @csrf --}}
+                    <form name="data" id="data">
                         <div class="">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duty name*</label>
@@ -75,21 +74,22 @@
                             <input type="time" name="exp_time" value='00:00:00' id="exp_clock"
                                 class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-400 focus:border-indigo-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-600 dark:focus:border-indigo-600">
                         </div>
+                        <input type="" class="hidden" id="check" name="new" value="0">
                         <br>
-                        <button type="submit" id="save" name="id" value=""
+                        <button type="submit" id="save"
                             class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">Save</button>
-                    </form>
+                    </form> 
                     <button id="cancel"
-                        class="mt-4 completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                        class="mt-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                         Cancel
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="pending_duties" class="w-full mx-auto sm:px-6 lg:px-8">
+        <div id="pending_duties" class="w-full h-full mx-auto sm:px-6 lg:px-8">
             <div
-                class="w-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Pending Duties</h5>
                     <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -104,7 +104,7 @@
                                     <div class="flex-shrink-0">
                                         <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
                                             class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Completed
+                                            Complete
                                         </button>
                                     </div>
                                     <div class="flex-1 min-w-0 ms-4">
@@ -122,7 +122,7 @@
                                             Modify
                                         </button>
                                         <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
                                             Remove
                                         </button>
                                     </div>
@@ -135,9 +135,9 @@
             </div>
         </div>
 
-        <div id="completed_duties" class="hidden w-full mx-auto sm:px-6 lg:px-8">
+        <div id="completed_duties" class="hidden w-full h-full mx-auto sm:px-6 lg:px-8">
             <div
-                class="w-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Completed Duties</h5>
                     <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -170,7 +170,7 @@
                                             Modify
                                         </button>
                                         <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
                                             Remove
                                         </button>
                                     </div>
@@ -183,9 +183,9 @@
             </div>
         </div>
 
-        <div id="future_duties" class="hidden w-full mx-auto sm:px-6 lg:px-8">
+        <div id="future_duties" class="hidden w-full h-full mx-auto sm:px-6 lg:px-8">
             <div
-                class="w-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Future Duties</h5>
                     <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -218,7 +218,7 @@
                                             Modify
                                         </button>
                                         <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
                                             Remove
                                         </button>
                                     </div>
@@ -231,9 +231,9 @@
             </div>
         </div>
 
-        <div id="expired_duties" class="hidden w-full mx-auto sm:px-6 lg:px-8">
+        <div id="expired_duties" class="hidden w-full h-full mx-auto sm:px-6 lg:px-8">
             <div
-                class="w-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Expired Duties</h5>
                     <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -266,7 +266,7 @@
                                             Modify
                                         </button>
                                         <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
                                             Remove
                                         </button>
                                     </div>
@@ -285,38 +285,39 @@
     <script type="module">
         $(document).ready(function() {
             $('.completed_duty').click(function () {
-                $(this).html($(this).data('id'))
+                $(this).html('Completed');
             });
             $('.modify_duty').click(function () {
                 var form = $('#duty_form');
-                $(this).html($(this).data('id'));
                 if(form.hasClass("hidden")){
                     form.removeClass("hidden");
                 }
+                $('.modify_duty').html('Modify');
+                $(this).html('Modifying');
                 $('#name').val($(this).data('name'));
                 $('#description').val($(this).data('description'));
                 $('#st_date').val($(this).data('st_date').substr(0,10));
-                // console.log($(this).data('st_date').substr(11,17));
                 $('#st_clock').val($(this).data('st_date').substr(11,17));
                 $('#exp_date').val($(this).data('exp_date').substr(0,10));
                 $('#exp_clock').val($(this).data('exp_date').substr(11,17));
-                $('#save').attr('name','id');
-                $('#save').attr('value',$(this).data('id'));
+                $('#check').attr('name','modify');
+                $('#check').attr('value',$(this).data('id'));
             });
             $('.delete_duty').click(function () {
-                $(this).html($(this).data('id'))
-            });
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
+                $(this).html('Removed');
             });
             $('#cancel').click(function(){
                 $('#duty_form').addClass("hidden");
             });
             $('#new_btn').click(function() {
-                $('#save').attr('name','');
-                $('#save').attr('value','');
+                $('#name').val('');
+                $('#description').val('');
+                $('#st_date').val('{{$current_date}}');
+                $('#st_clock').val('{{$current_time}}');
+                $('#exp_date').val('');
+                $('#exp_clock').val('00:00:00');
+                $('#check').attr('name','new');
+                $('#check').attr('value','0');
                 if($('#duty_form').hasClass("hidden")){
                     $('#duty_form').removeClass("hidden");
                 }
@@ -349,11 +350,16 @@
                     $('#expired_duties').addClass("hidden");
                 }
             });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
             var form = $('#data')[0];
             // console.log(form);
             $('#save').click(function() {
                 var formData = new FormData(form);
-                console.log(formData);
+                // console.log(formData);
                 $.ajax({
                     url: '{{route('db.upload')}}',
                     method: 'POST',
@@ -366,7 +372,7 @@
                     },
                     error: function(error) {
                         if(error){
-                            console.log(error.responseJSON.errors.name)
+                            console.log(error.responseJSON.errors)
                         }
                     }
                 });

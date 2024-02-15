@@ -13,7 +13,7 @@ class DashboardController extends Controller
         $current_date = date('Y-m-d');
         $current_time = date('H:i:00');
         $now = $current_date.' '.$current_time;
-        $indexes = 20;
+        $indexes = 10;
         // $duties = Duty::where('user_id', auth()->user()->id)->lazyById(1, $column = 'id');
         $duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','<',$now)->where('exp_date','>',$now)->paginate($indexes);
         $future_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','>',$now)->paginate($indexes);
@@ -31,27 +31,24 @@ class DashboardController extends Controller
             'st_date' => 'required',
         ]);
         if($request -> name && $request -> exp_date && $request -> st_date){     
-            $duty = new Duty();
+            
+            if($request -> modify){
+                if($request -> modify != '0'){
+                    $duty = Duty::where('id',$request->modify)->first();
+                }
+            }else{
+                $duty = new Duty();
+            }
             $duty -> name = $request -> name;
             $duty -> description = $request -> description;
             $duty -> st_date = $request->st_date." ".$request->st_time;
             $duty -> exp_date = $request->exp_date." ".$request->exp_time;  
             $duty -> user_id = auth()->user()->id;
-            if($request -> id){
-                if($request -> id != ''){
-                    $duty -> id = $request -> id;
-                }
-
-            }  
-            // $duty -> save();
+            $duty -> save();
             // return redirect()->route('dashboard');
-            // return "valid and updated";
-            return $request;
-        }else{
-            return "invalid";
+            
+            // return $duty;
         }
-
-        
-       
+        return "completed";
     }
 }
