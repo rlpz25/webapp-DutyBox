@@ -33,187 +33,6 @@
 
     <div id="main_grid" class="grid grid-cols-1 py-9 gap-y-4">
 
-        <div id="pd_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
-            <div
-                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Pending Duties</h5>
-                </div>
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <button class="show_php hidden" value="{{$pd_duties}}"></button>
-                        @foreach ($pd_duties as $duty)
-                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Complete
-                                        </button>
-                                    </div>
-                                    <div class="flex-1 min-w-0 ms-4">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            {{ $duty->name }}
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                            {{ $duty->description }}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Modify
-                                        </button>
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                    {{-- {{ $pd_duties->links() }} --}}
-                </div>
-            </div>
-        </div>
-
-        <div id="cp_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
-            <div
-                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Completed Duties</h5>
-                </div>
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @foreach ($cp_duties as $duty)
-                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Completed
-                                        </button>
-                                    </div>
-                                    <div class="flex-1 min-w-0 ms-4">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            {{ $duty->name }}
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                            {{ $duty->description }}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Modify
-                                        </button>
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                    {{-- {{ $cp_duties->links() }} --}}
-                </div>
-            </div>
-        </div>
-
-        <div id="ft_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
-            <div
-                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Future Duties</h5>
-                </div>
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @foreach ($ft_duties as $duty)
-                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Complete
-                                        </button>
-                                    </div>
-                                    <div class="flex-1 min-w-0 ms-4">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            {{ $duty->name }}
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                            {{ $duty->description }}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Modify
-                                        </button>
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                    {{-- {{ $ft_duties->links() }} --}}
-                </div>
-            </div>
-        </div>
-
-        <div id="xp_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
-            <div
-                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Expired Duties</h5>
-                </div>
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @foreach ($xp_duties as $duty)
-                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Complete
-                                        </button>
-                                    </div>
-                                    <div class="flex-1 min-w-0 ms-4">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            {{ $duty->name }}
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                            {{ $duty->description }}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                            Modify
-                                        </button>
-                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
-                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                    {{-- {{ $xp_duties->links() }} --}}
-                </div>
-            </div>
-        </div>
-
         <div id="duty_form" class="hidden w-full h-full mx-auto sm:rounded-lg sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100">
             <div class="w-full h-full mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -256,9 +75,9 @@
                         </div>
                         <input type="" class="hidden" id="check" name="new" value="0">
                         <br>
-                        <button type="submit" id="save"
-                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">Save</button>
                     </form> 
+                    <button type="submit" id="save"
+                            class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-indigo-800">Save</button>
                     <button id="cancel"
                         class="mt-4 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
                         Cancel
@@ -266,6 +85,192 @@
                 </div>
             </div>
         </div>
+
+        <div id="pd_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
+            <div
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Pending Duties</h5>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        {{-- <button class="show_php hidden" value="{{$pd_duties}}"></button> --}}
+                        @foreach ($duties as $duty)
+                            @if ($duty->completed == NULL && $duty->st_date <= $current_date." ".$current_time && $duty->exp_date > $current_date." ".$current_time)
+                            {{-- @if (true) --}}
+                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Complete
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ $duty->name }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ $duty->description }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Modify
+                                        </button>
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="cp_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
+            <div
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Completed Duties</h5>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        @foreach ($duties as $duty)
+                            @if ($duty->completed != NULL)
+                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Completed
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ $duty->name }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ $duty->description }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Modify
+                                        </button>
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="ft_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
+            <div
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Future Duties</h5>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        @foreach ($duties as $duty)
+                            @if ($duty->completed == NULL && $duty->st_date > $current_date." ".$current_time)
+                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Complete
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ $duty->name }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ $duty->description }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Modify
+                                        </button>
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="xp_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
+            <div
+                class="w-full h-full p-4 lg:p bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Expired Duties</h5>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        @foreach ($duties as $duty)
+                            @if ($duty->completed == NULL && $duty->exp_date < $current_date." ".$current_time)
+                            <li class="py-3 sm:py-4 element_id_{{$duty->id}}">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="completed_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Complete
+                                        </button>
+                                    </div>
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ $duty->name }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ $duty->description }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="modify_duty text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                                            Modify
+                                        </button>
+                                        <button data-id="{{$duty->id}}" data-name="{{$duty->name}}" data-description="{{$duty->description}}" data-st_date="{{$duty->st_date}}" data-exp_date="{{$duty->exp_date}}" data-completed="{{$duty->completed}}"
+                                            class="delete_duty ml-4 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-700 dark:hover:bg-rose-800 dark:focus:ring-rose-800">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div> 
 
         {{-- <div id="xp_duties_ls" class="duties_list hidden w-full h-full mx-auto sm:px-6 lg:px-8">
             <div
@@ -325,7 +330,7 @@
                 var form = $('#data')[0];
                 var formData = new FormData(form);
                 $.ajax({
-                    url: '{{route('db.upload')}}',
+                    url: "{{route('db.upload')}}",
                     method: 'POST',
                     processData: false,
                     contentType: false,
@@ -333,7 +338,13 @@
                     success: function(response) {
                         console.log('successful create or update');
                         // location.reload();
-                        console.log(response);
+                        if (typeof response == "string"){
+                            alert(response)
+                        }else{
+                            location.reload();
+                        }
+                        // window.location.replace("{{route('dashboard')}}");
+                        // console.log(response);
                     },
                     error: function(error) {
                         if(error){
@@ -347,7 +358,7 @@
                 $('#check').attr('name','complete');
                 $('#check').attr('value',$(this).data('id'));
                 var form = $('#data')[0];
-                var formData = new FormData(form);
+                var formData = new FormData(form);  
                 var dtid = '.element_id_'+$(this).data('id');
                 // console.log(dtid);
                 $.ajax({
@@ -396,11 +407,11 @@
                 }
             });
             $('#new_btn').click(function() {
-                $('#name').val('');
-                $('#description').val('');
+                $('#name').removeAttr('value');
+                $('#description').removeAttr('value');
                 $('#st_date').val('{{$current_date}}');
                 $('#st_clock').val('{{$current_time}}');
-                $('#exp_date').val('');
+                $('#exp_date').removeAttr('value');
                 $('#exp_clock').val('00:00:00');
                 $('#check').attr('name','new');
                 $('#check').attr('value','0');
