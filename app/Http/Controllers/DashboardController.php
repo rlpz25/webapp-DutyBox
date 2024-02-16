@@ -13,29 +13,30 @@ class DashboardController extends Controller
         $current_date = date('Y-m-d');
         $current_time = date('H:i:00');
         $now = $current_date.' '.$current_time;
-        $indexes = 10;
+        $id = auth()->user()->id;
+        // $indexes = 10;
         // $duties = Duty::where('user_id', auth()->user()->id)->lazyById(1, $column = 'id');
-        $duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','<',$now)->where('exp_date','>',$now)->paginate($indexes);
-        $future_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','>',$now)->paginate($indexes);
-        $exp_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('exp_date','<',$now)->paginate($indexes);
-        $comp_duties = Duty::where('user_id', auth()->user()->id)->where('completed','!=',NULL)->paginate($indexes);
+        $pd_duties = Duty::where('user_id', $id)->where('completed',NULL)->where('st_date','<',$now)->where('exp_date','>',$now)->orderBy('exp_date','asc')->get();
+        $ft_duties = Duty::where('user_id', $id)->where('completed',NULL)->where('st_date','>',$now)->orderBy('st_date','asc')->get();
+        $xp_duties = Duty::where('user_id', $id)->where('completed',NULL)->where('exp_date','<',$now)->orderBy('exp_date','desc')->get();
+        $cp_duties = Duty::where('user_id', $id)->where('completed','!=',NULL)->orderBy('completed','desc')->get();
 
-        return view('dashboard',compact('duties','comp_duties','future_duties','exp_duties','current_date','current_time'));
+        return view('dashboard',compact('pd_duties','cp_duties','ft_duties','xp_duties','current_date','current_time'));
     }
 
     public function upload(Request $request)
     {   
         $duty = 0;
         if($request -> remove){
-            $duty = 'es remove';
+            // $duty = 'es remove';
             if($request -> remove != '0'){
-                $duty = 'tiene id el remove';
+                // $duty = 'tiene id el remove';
                 $duty = Duty::where('id',$request->remove)->delete();
             }
         } elseif ($request -> complete){
-            $duty = 'es request';
+            // $duty = 'es request';
             if($request -> complete != '0'){
-                $duty = 'tiene id el request';
+                // $duty = 'tiene id el request';
                 date_default_timezone_set('America/Mexico_City');
                 $duty = Duty::where('id',$request->complete)->first();
                 if($duty->completed == NULL){
@@ -53,9 +54,10 @@ class DashboardController extends Controller
             ]);
             if ($request -> modify){
                 if($request -> modify != '0'){
+                    
                     $duty = Duty::where('id',$request->modify)->first();
                 }
-            }elseif ($request -> new){
+            }else{
                 $duty = new Duty();
             }
             $duty -> name = $request -> name;
@@ -67,4 +69,17 @@ class DashboardController extends Controller
         }
         return $duty;
     }
+
+    // public function getData(){
+    //     date_default_timezone_set('America/Mexico_City');
+    //     $current_date = date('Y-m-d');
+    //     $current_time = date('H:i:00');
+    //     $now = $current_date.' '.$current_time;
+    //     $indexes = 10;
+    //     $pd_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','<',$now)->where('exp_date','>',$now)->get();
+    //     $ft_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('st_date','>',$now)->get();
+    //     $xp_duties = Duty::where('user_id', auth()->user()->id)->where('completed',NULL)->where('exp_date','<',$now)->get();
+    //     $cp_duties = Duty::where('user_id', auth()->user()->id)->where('completed','!=',NULL)->get();
+    //     return [$pd_duties,$ft_duties,$xp_duties,$cp_duties];
+    // }
 }
